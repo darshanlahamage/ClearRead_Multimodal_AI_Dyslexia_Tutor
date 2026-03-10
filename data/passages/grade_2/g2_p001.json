@@ -1,0 +1,15 @@
+{
+    "passage_id": "g2_p001",
+    "difficulty_band": "grade_2",
+    "title": "The Blue Umbrella",
+    "text": "The blue umbrella stood by the front door. It had black spots and a long handle. When the clouds gathered, Tom grabbed it and ran outside. The rain began to fall on the street. He stayed completely dry under the umbrella and smiled.",
+    "word_count": 45,
+    "avg_word_length": 4.4,
+    "sentence_count": 5,
+    "target_phoneme_patterns": [
+        "bl_cluster",
+        "ck_digraph",
+        "th_digraph"
+    ],
+    "notes": "Primary demo passage. Umbrella, completely, gathered are hesitation trigger words. bl appears in blue, black, umbrella."
+}

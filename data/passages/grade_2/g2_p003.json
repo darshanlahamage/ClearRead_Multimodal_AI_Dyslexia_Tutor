@@ -1,0 +1,16 @@
+{
+    "passage_id": "g2_p003",
+    "difficulty_band": "grade_2",
+    "title": "The Lighthouse",
+    "text": "The old lighthouse stood at the edge of the rocky shore. Every night, its bright light turned slowly in the darkness. Ships could see the light from far away and steer clear of the rocks. A keeper lived inside and made sure the light was always on. Without the lighthouse, many ships would have been lost in the black water.",
+    "word_count": 64,
+    "avg_word_length": 4.5,
+    "sentence_count": 5,
+    "target_phoneme_patterns": [
+        "th_digraph",
+        "ough_pattern",
+        "bl_cluster",
+        "silent_e"
+    ],
+    "notes": "Grade 2 passage. bl_cluster in black, ough in without, th_digraph in the."
+}

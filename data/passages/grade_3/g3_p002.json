@@ -1,0 +1,17 @@
+{
+    "passage_id": "g3_p002",
+    "difficulty_band": "grade_3",
+    "title": "The Invention of Flight",
+    "text": "Throughout history, human beings have dreamed of flying like birds. The Wright Brothers studied the flight of birds carefully and built their first flying machine from wood and cloth. Their invention changed transportation completely. Thousands of engineers worked hard to improve aircraft through the following decades. Today, hundreds of thousands of flights carry millions of passengers across the globe every single day.",
+    "word_count": 68,
+    "avg_word_length": 6.0,
+    "sentence_count": 5,
+    "target_phoneme_patterns": [
+        "ough_pattern",
+        "tion_suffix",
+        "th_digraph",
+        "str_cluster",
+        "bl_cluster"
+    ],
+    "notes": "Grade 3 passage. through, thousands, flight, transportation (tion_suffix), completely."
+}

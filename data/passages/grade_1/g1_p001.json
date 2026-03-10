@@ -1,0 +1,13 @@
+{
+    "passage_id": "g1_p001",
+    "difficulty_band": "grade_1",
+    "title": "The Red Ball",
+    "text": "Sam has a red ball. The ball is big and round. Sam can kick the ball. It goes up and down. The dog runs after the ball. Sam and the dog play all day.",
+    "word_count": 34,
+    "avg_word_length": 3.2,
+    "sentence_count": 6,
+    "target_phoneme_patterns": [
+        "vowel_team_ea"
+    ],
+    "notes": "Very simple Grade 1 passage. Short sentences, common CVC words. Good starting point for new learners."
+}

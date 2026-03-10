@@ -1,0 +1,17 @@
+{
+    "passage_id": "g3_p001",
+    "difficulty_band": "grade_3",
+    "title": "The Ancient Forest",
+    "text": "Deep within the ancient forest, the trees stood like great silent guardians. Streams trickled through the undergrowth, their water clear and cold. Strange plants and creatures lived among the thick roots and branches. Explorers who ventured too far sometimes became completely lost for days. The forest held countless secrets within its green shadows, waiting patiently for those brave enough to discover them.",
+    "word_count": 67,
+    "avg_word_length": 5.8,
+    "sentence_count": 5,
+    "target_phoneme_patterns": [
+        "str_cluster",
+        "tion_suffix",
+        "bl_cluster",
+        "th_digraph",
+        "vowel_team_ea"
+    ],
+    "notes": "Grade 3 passage. More complex vocabulary. str_cluster (streams, strange, strong), completely, creatures."
+}

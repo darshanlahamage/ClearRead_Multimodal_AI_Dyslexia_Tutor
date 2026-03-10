@@ -1,0 +1,15 @@
+{
+    "passage_id": "g2_p002",
+    "difficulty_band": "grade_2",
+    "title": "The Thunderstorm",
+    "text": "Dark clouds rolled across the sky. Thunder boomed and lightning flashed through the air. The children ran inside quickly and shut the door. Their mother made them hot chocolate and they watched the storm from the window. The thunder grew softer and softer. Then the rain stopped and a bright rainbow stretched across the sky.",
+    "word_count": 56,
+    "avg_word_length": 4.8,
+    "sentence_count": 6,
+    "target_phoneme_patterns": [
+        "th_digraph",
+        "ough_pattern",
+        "str_cluster"
+    ],
+    "notes": "Grade 2 passage with th_digraph (thunder, their, the), str_cluster (stretched, storm). Medium difficulty."
+}

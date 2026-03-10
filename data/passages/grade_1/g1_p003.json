@@ -1,0 +1,14 @@
+{
+    "passage_id": "g1_p003",
+    "difficulty_band": "grade_1",
+    "title": "The Stream",
+    "text": "Look at the stream. The water moves fast over the rocks. A frog jumps in with a big splash. Fish swim near the bottom. Leaves float on top of the water. The stream is a fun place to see.",
+    "word_count": 40,
+    "avg_word_length": 3.6,
+    "sentence_count": 6,
+    "target_phoneme_patterns": [
+        "str_cluster",
+        "vowel_team_ea"
+    ],
+    "notes": "Grade 1 passage with str_cluster (stream) and ea vowel team (leaves, near). Slightly longer sentences than g1_p001."
+}

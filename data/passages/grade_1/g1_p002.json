@@ -1,0 +1,14 @@
+{
+    "passage_id": "g1_p002",
+    "difficulty_band": "grade_1",
+    "title": "The Black Cat",
+    "text": "This is a black cat. The cat sits on the mat. She likes to nap in the sun. The cat drinks milk from a dish. She has soft fur and green eyes. Pat the cat gently.",
+    "word_count": 36,
+    "avg_word_length": 3.3,
+    "sentence_count": 6,
+    "target_phoneme_patterns": [
+        "ck_digraph",
+        "vowel_team_ea"
+    ],
+    "notes": "Grade 1 passage with ck_digraph pattern (black, nap). Short sentences."
+}
