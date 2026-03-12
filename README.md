@@ -54,6 +54,15 @@ ClearRead doesn't just track right/wrong words; it builds a clinical-grade profi
 
 ---
 
+## Media
+<img width="500" height="275" alt="Screenshot 2026-03-12 at 6 28 58 PM" src="https://github.com/user-attachments/assets/b94838a7-e26a-4f88-b289-5042ba9e8e17" />
+<img width="500" height="520" alt="Screenshot 2026-03-12 at 7 04 28 PM" src="https://github.com/user-attachments/assets/380eaa70-131d-4283-a5a1-c58d962624b7" />
+<img width="500" height="300" alt="Screenshot 2026-03-12 at 7 25 02 PM" src="https://github.com/user-attachments/assets/375b6011-426d-4b76-b049-a9abeb688e9d" />
+<img width="500" height="725" alt="Screenshot 2026-03-12 at 7 28 54 PM" src="https://github.com/user-attachments/assets/a1feed5e-b7b8-4094-b013-8b7dfb1688b8" />
+<img width="500" height="300" alt="Screenshot 2026-03-12 at 7 34 33 PM" src="https://github.com/user-attachments/assets/fb56708e-34a8-4238-8d58-e20385ef410b" />
+<img width="500" height="300" alt="Screenshot 2026-03-12 at 7 36 38 PM" src="https://github.com/user-attachments/assets/99e6b682-3e44-4cfa-8e16-6d0568c7d652" />
+
+
 ## 🏗️ Technical Architecture & Amazon Nova Integration
 
 ClearRead employs a high-performance FastAPI backend orchestrating three distinct phases of Coach Nova's intelligence over WebSocket and REST APIs.
