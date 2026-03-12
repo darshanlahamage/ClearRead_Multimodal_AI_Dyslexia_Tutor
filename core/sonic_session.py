@@ -3,14 +3,6 @@ Nova Sonic Session
 ------------------
 Handles the full bidirectional streaming session with Amazon Nova 2 Sonic.
 
-SDK NOTE: This uses the experimental aws-sdk-bedrock-runtime package,
-NOT standard boto3. Nova Sonic's InvokeModelWithBidirectionalStream API
-is not available in boto3 yet.
-
-Requires:
-    pip install aws-sdk-bedrock-runtime smithy-aws-core
-    Python 3.12+
-
 What this does:
     1. Opens a bidirectional stream with Bedrock
     2. Sends initialization events (session config + system prompt)
@@ -18,13 +10,6 @@ What this does:
     4. Parses Sonic's output events → yields WordEvent objects
     5. Returns Sonic's audio output for playback (spoken word correction)
     6. Cleanly terminates the session
-
-FIXES applied vs original:
-    - contentBlockStart/contentBlockEnd → contentStart/contentEnd (correct SDK event names)
-    - Config() no longer needs http_auth_scheme_resolver / http_auth_schemes args
-    - asyncio.get_event_loop() → asyncio.get_running_loop() (Python 3.12+ / 3.14)
-    - Added interactive:true to audio contentStart event
-    - Stream close added on end_session
 """
 
 import asyncio
@@ -110,10 +95,6 @@ class NovaSonicSession:
         Set up the experimental Bedrock client with SigV4 auth.
         Credentials are read from environment variables:
             AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
-        
-        FIX: Removed http_auth_scheme_resolver and http_auth_schemes — not needed
-        per official AWS sample (nova_sonic_simple.py). EnvironmentCredentialsResolver
-        handles auth automatically.
         """
         config = Config(
             endpoint_uri=f"https://bedrock-runtime.{self.region}.amazonaws.com",
@@ -425,7 +406,7 @@ class NovaSonicSession:
         stop_event = asyncio.Event()
 
         async def wait_for_enter():
-            loop = asyncio.get_running_loop()  # FIX: was get_event_loop()
+            loop = asyncio.get_running_loop()  
             await loop.run_in_executor(None, input)
             stop_event.set()
 
@@ -433,7 +414,7 @@ class NovaSonicSession:
 
         try:
             while not stop_event.is_set() and self.is_active:
-                loop = asyncio.get_running_loop()  # FIX: was get_event_loop()
+                loop = asyncio.get_running_loop()  
                 pcm_data = await loop.run_in_executor(
                     None,
                     lambda: mic_stream.read(CHUNK_SIZE, exception_on_overflow=False)
