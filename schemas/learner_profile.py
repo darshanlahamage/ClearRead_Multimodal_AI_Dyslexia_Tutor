@@ -25,7 +25,6 @@ class ErrorCategory:
 
 @dataclass
 class SessionSummary:
-    """Compact record of one session stored inside the profile for quick access."""
     session_id: str
     date: str                        # YYYY-MM-DD
     words_per_minute: float
@@ -38,10 +37,6 @@ class SessionSummary:
 class LearnerProfile:
     """
     Full learner profile. Written to DynamoDB after every session.
-
-    Fields marked # Phase 1 are set immediately.
-    Fields marked # Phase 2 are set after Nova 2 Lite reasoning runs.
-    Fields marked # Phase 3 are set after Nova Embeddings runs.
     """
 
     # Identity - Phase 1
@@ -66,7 +61,6 @@ class LearnerProfile:
     working_memory: Optional[ErrorCategory] = None
     fluency: Optional[ErrorCategory] = None
 
-    # Embedding reference - set in Phase 3
     embedding_vector_key: Optional[str] = None
 
     def to_dict(self) -> dict:
