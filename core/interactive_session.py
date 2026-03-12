@@ -2,8 +2,7 @@
 Interactive Sonic Session
 --------------------------
 A separate Nova Sonic session used for Interactive Practice mode.
-Unlike the assessment session (which mutes Sonic's voice), this session
-enables full speech-to-speech: Coach Nova speaks freely, generates sentences
+full speech-to-speech: Coach Nova speaks freely, generates sentences
 for the student to practice, corrects pronunciation, and answers questions.
 
 Uses the same experimental aws-sdk-bedrock-runtime SDK as sonic_session.py.
