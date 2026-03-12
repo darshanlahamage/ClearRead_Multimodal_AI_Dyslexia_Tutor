@@ -8,12 +8,16 @@ Two tables:
 
 import boto3
 import json
+import logging
 from datetime import datetime, timezone
 from decimal import Decimal
 
 from schemas.session_trace import ReadingSessionTrace
 from schemas.learner_profile import LearnerProfile
 from config.settings import AWS_REGION, DYNAMO_PROFILES_TABLE, DYNAMO_SESSIONS_TABLE
+
+logger = logging.getLogger(__name__)
+
 
 
 # DynamoDB resource (higher-level, simpler API than client)

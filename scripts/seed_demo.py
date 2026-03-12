@@ -145,18 +145,18 @@ def main():
                 "difficulty_band": "grade_2",
             }))
         except Exception as e:
-            print(f"  ❌ Failed session {i+1}: {e}")
+            print(f"  Failed session {i+1}: {e}")
 
     # Create or overwrite the learner profile
     profile = create_profile(recent_sessions)
     try:
         _profiles_table.put_item(Item=profile)
-        print(f"\n  ✅ Learner profile created/updated for {LEARNER_ID}")
+        print(f"\n  Learner profile created/updated for {LEARNER_ID}")
     except Exception as e:
-        print(f"\n  ❌ Failed to write profile: {e}")
+        print(f"\n  Failed to write profile: {e}")
 
     print("=" * 60)
-    print(f"✅ Demo seeding complete.")
+    print(f" Demo seeding complete.")
     print(f"   Learner: {LEARNER_ID}")
     print(f"   Sessions seeded: {len(session_ids_created)}/5")
     print(f"   Progress arc: 42 → 67 WPM over 14 days")

@@ -1,11 +1,3 @@
-"""
-Embed Content Library
----------------------
-One-time setup script: embeds all 8 passages into the S3 Vectors content-library-index.
-Run this before the first demo session.
-
-"""
-
 import json
 import sys
 from pathlib import Path

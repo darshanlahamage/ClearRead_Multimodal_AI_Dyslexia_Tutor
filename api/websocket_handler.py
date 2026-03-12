@@ -444,3 +444,117 @@ async def _stream_interactive_responses(ws: WebSocket, session):
         logger.error(f"Fatal interactive response error: {e}")
         session.is_active = False
 
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Web Reader Discussion Mode — Sonic discusses a simplified web page
+# ═══════════════════════════════════════════════════════════════════════════════
+
+async def handle_webreader_websocket(ws: WebSocket, learner_id: str):
+    """
+    WebSocket handler for Web Reader discussion mode.
+    Receives the page context (sonic_context from web_reader.py) and starts
+    a Sonic session where Coach Nova discusses the page content with the student.
+    """
+    await ws.accept()
+    logger.info(f"WebReader WS connected: learner={learner_id}")
+
+    from core.interactive_session import InteractiveSonicSession
+
+    session: InteractiveSonicSession = None
+    response_task = None
+    session_started = False
+
+    try:
+        await ws.send_json({"type": "status", "message": "connected"})
+
+        while True:
+            try:
+                message = await ws.receive()
+            except WebSocketDisconnect:
+                break
+
+            # Binary: PCM audio
+            if message.get("bytes") is not None:
+                if session_started:
+                    await session._send_audio_chunk(message["bytes"])
+                continue
+
+            # Text: JSON control
+            raw_text = message.get("text", "")
+            if not raw_text:
+                continue
+
+            try:
+                ctrl = json.loads(raw_text)
+            except json.JSONDecodeError:
+                continue
+
+            msg_type = ctrl.get("type", "")
+
+            if msg_type == "start_audio":
+                page_context = ctrl.get("page_context", "")
+                page_title = ctrl.get("page_title", "a web page")
+
+                # Build a context string that tells Sonic about the page
+                words_context = (
+                    f"The student is reading a simplified web page titled '{page_title}'. "
+                    f"Here is detailed context about the page content: {page_context}. "
+                    f"Discuss this page with the student. Explain concepts simply, "
+                    f"answer their questions about the content, and help them understand "
+                    f"the key ideas. If they ask about a specific part, reference the content above."
+                )
+
+                # Fetch learner profile for personalization
+                error_profile = {}
+                try:
+                    from storage.dynamo import get_learner_profile
+                    profile = get_learner_profile(learner_id)
+                    if profile:
+                        error_profile = profile.get("error_profile", {})
+                except Exception as e:
+                    logger.warning(f"Could not fetch profile for web reader: {e}")
+
+                session = InteractiveSonicSession(
+                    learner_id=learner_id,
+                    words_context=words_context,
+                    error_profile=error_profile
+                )
+                try:
+                    await session.start_streaming()
+                    session_started = True
+                    response_task = asyncio.create_task(
+                        _stream_interactive_responses(ws, session)
+                    )
+                    await ws.send_json({"type": "status", "message": "listening"})
+                except Exception as e:
+                    logger.error(f"Failed to start web reader Sonic: {e}")
+                    await ws.send_json({"type": "error", "message": str(e)})
+
+            elif msg_type == "stop_audio":
+                if not session_started:
+                    continue
+                try:
+                    await session.stop_streaming()
+                except Exception:
+                    pass
+                if response_task and not response_task.done():
+                    try:
+                        await asyncio.wait_for(asyncio.shield(response_task), timeout=5.0)
+                    except (asyncio.TimeoutError, asyncio.CancelledError):
+                        response_task.cancel()
+                break
+
+    except Exception as e:
+        logger.error(f"WebReader WS error: {e}")
+    finally:
+        if session_started and session:
+            try:
+                session.is_active = False
+                await session.stop_streaming()
+            except Exception:
+                pass
+        if response_task and not response_task.done():
+            response_task.cancel()
+        logger.info(f"WebReader WS exiting: learner={learner_id}")
+
+

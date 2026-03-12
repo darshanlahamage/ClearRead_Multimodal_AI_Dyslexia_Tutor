@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearRead AI - Dyslexia Coaching</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        dark: '#0f172a',
+                        card: 'rgba(30, 41, 59, 0.7)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        dyslexic: ['OpenDyslexic', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css?v=13">
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans antialiased transition-all duration-300">
+    <!-- Animated SVG Background -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none opacity-50">
+        <div
+            class="absolute -top-[40%] -left-[20%] w-[80%] h-[80%] rounded-full bg-primary/20 blur-[120px] mix-blend-multiply animate-blob">
+        </div>
+        <div
+            class="absolute top-[20%] -right-[20%] w-[70%] h-[70%] rounded-full bg-secondary/20 blur-[120px] mix-blend-multiply animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute -bottom-[40%] left-[10%] w-[90%] h-[90%] rounded-full bg-blue-500/20 blur-[120px] mix-blend-multiply animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Layout Container -->
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-12 animate-fade-in">
+            <div class="flex items-center gap-3 cur-pointer" onclick="app.navigate('home')">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/30">
+                    <i data-lucide="sparkles" class="text-white w-5 h-5"></i>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-slate-800">ClearRead</h1>
+            </div>
+            <div id="user-profile-badge"
+                class="hidden glass-panel px-4 py-2 rounded-full flex items-center gap-2 border border-slate-300/50">
+                <i data-lucide="user" class="w-4 h-4 text-slate-600"></i>
+                <span id="header-learner-id" class="text-sm font-bold text-slate-700">demo_learner</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-container" class="flex-grow flex flex-col relative">
+            <!-- Views injected here by app.js -->
+        </main>
+
+        <!-- Interactive Practice View (Managed by JS) -->
+        <div id="interactive-view"
+            class="hidden fixed inset-0 z-50 bg-slate-900 overflow-hidden flex flex-col justify-center items-center">
+            <!-- Interactive Practice UI rendered here by app.js -->
+        </div>
+
+    </div>
+
+    <!-- Chart.js for Progress Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Application Logic -->
+    <script src="js/app.js?v=14"></script>
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

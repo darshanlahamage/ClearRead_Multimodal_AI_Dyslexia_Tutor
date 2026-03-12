@@ -7,3 +7,5 @@ python-dotenv>=1.0.0
 pyaudio>=0.2.14
 aws-sdk-bedrock-runtime>=0.3.0
 smithy-aws-core>=0.3.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0

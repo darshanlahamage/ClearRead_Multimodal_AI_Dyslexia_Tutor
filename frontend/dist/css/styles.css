@@ -1,0 +1,394 @@
+/* Custom CSS for Glassmorphism & Animations */
+
+/* Dyslexia Font Load (optional fallback) */
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('https://opendyslexic.org/core/OpenDyslexic-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #ec4899);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    filter: brightness(110%);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 15s infinite alternate ease-in-out;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.view-enter {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Reading Passage Word Highlighting */
+.reading-word {
+    transition: all 0.2s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.word-read {
+    color: #64748b;
+    /* slate-500 */
+}
+
+.word-reading {
+    color: #0f172a;
+    background: rgba(99, 102, 241, 0.2);
+    /* primary transparent */
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+    transform: scale(1.05);
+}
+
+.word-hesitation {
+    border-bottom: 2px solid #fbbf24;
+    /* amber-400 */
+}
+
+.word-low-conf {
+    border-bottom: 2px dashed #ec4899;
+    /* pink-500 */
+}
+
+/* Toggle Dyslexic Font */
+.font-toggled .reading-text {
+    font-family: 'OpenDyslexic', sans-serif !important;
+    line-height: 2 !important;
+    letter-spacing: 0.05em;
+}
+
+/* Pulse animation for recording mic */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+.recording-pulse {
+    animation: pulse-ring 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+/* Skeleton Loading */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    border-radius: 0.5rem;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Recording Bar */
+.recording-bar {
+    position: sticky;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 40%, rgba(255, 255, 255, 0));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 20;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.reading-container {
+    padding-bottom: 8rem;
+    /* space for the sticky bar */
+    height: 65vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Scrollbar styling for the reading container */
+.reading-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reading-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.reading-container::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
+}
+
+.reading-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.6);
+}
+
+/* ── Word Analysis Colors (Results Page) ── */
+
+.word-correct {
+    color: #16a34a;
+    background: rgba(22, 163, 74, 0.08);
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.word-warning {
+    color: #d97706;
+    background: rgba(217, 119, 6, 0.1);
+    border-radius: 4px;
+    padding: 2px 4px;
+    text-decoration: underline wavy #d97706;
+    text-underline-offset: 4px;
+}
+
+.word-error {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.1);
+    border-radius: 4px;
+    padding: 2px 4px;
+    text-decoration: underline wavy #dc2626;
+    text-underline-offset: 4px;
+    font-weight: 700;
+}
+
+/* ── Interactive Practice Mode ── */
+
+@keyframes voice-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.voice-pulse-ring {
+    animation: voice-pulse 2s ease-out infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.4s ease both;
+}
+
+/* Web Reader — Simplified Page Content Styles */
+.wr-page h1 {
+    font-size: 1.8em;
+    font-weight: 800;
+    margin: 0 0 0.8em 0;
+    border-bottom: 3px solid currentColor;
+    padding-bottom: 0.4em;
+    opacity: 0.9;
+}
+
+.wr-page h2 {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin: 1.5em 0 0.6em 0;
+    padding-left: 0.5em;
+    border-left: 4px solid #14b8a6;
+}
+
+.wr-page h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 1.2em 0 0.5em 0;
+}
+
+.wr-page p {
+    margin: 0.8em 0;
+}
+
+.wr-page ul,
+.wr-page ol {
+    margin: 0.8em 0;
+    padding-left: 1.5em;
+}
+
+.wr-page li {
+    margin: 0.4em 0;
+}
+
+.wr-page strong {
+    color: #0d9488;
+    font-weight: 700;
+}
+
+.wr-page blockquote {
+    margin: 1em 0;
+    padding: 0.8em 1.2em;
+    border-left: 4px solid #14b8a6;
+    background: rgba(20, 184, 166, 0.08);
+    border-radius: 0 0.75rem 0.75rem 0;
+    font-style: normal;
+}
+
+.wr-page img,
+.wr-page .wr-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    margin: 1.2em auto;
+    display: block;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.wr-page a {
+    color: #0d9488;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

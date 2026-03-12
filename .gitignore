@@ -10,7 +10,6 @@ venv/
 *.log
 
 # Frontend
-frontend/dist/
 node_modules/
 .vscode/
 .idea/

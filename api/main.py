@@ -384,6 +384,12 @@ async def websocket_interactive(ws: WebSocket, learner_id: str):
     await handle_interactive_websocket(ws, learner_id)
 
 
+@app.websocket("/ws/webreader/{learner_id}")
+async def websocket_webreader(ws: WebSocket, learner_id: str):
+    from api.websocket_handler import handle_webreader_websocket
+    await handle_webreader_websocket(ws, learner_id)
+
+
 # Picture Reading (Nova 2 Lite Vision)
 
 class VisionRequest(BaseModel):
@@ -412,6 +418,38 @@ async def vision_analyze(req: VisionRequest):
         pass
 
     result = analyze_image(image_bytes, learner_profile=profile, media_type=req.media_type)
+    return result
+
+
+# Web Reader (URL Simplification + Sonic Discussion)
+
+class WebSimplifyRequest(BaseModel):
+    url: str
+    learner_id: str = "guest"
+
+
+@app.post("/api/web/simplify")
+async def web_simplify(req: WebSimplifyRequest):
+    """Fetch a URL, extract content, and simplify it for dyslexic readers."""
+    import asyncio as _asyncio
+    from core.web_reader import fetch_and_extract, simplify_for_dyslexia
+
+    # Fetch and extract in a thread (blocking I/O)
+    extracted = await _asyncio.to_thread(fetch_and_extract, req.url)
+    if "error" in extracted:
+        return extracted
+
+    # Get learner profile for personalized simplification
+    profile = {}
+    try:
+        p = get_learner_profile(req.learner_id)
+        if p:
+            profile = p
+    except Exception:
+        pass
+
+    # Simplify with Nova Lite
+    result = await _asyncio.to_thread(simplify_for_dyslexia, extracted, profile)
     return result
 
 
